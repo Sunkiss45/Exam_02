@@ -5,58 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebarguil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/02 16:48:18 by ebarguil          #+#    #+#             */
-/*   Updated: 2021/04/06 15:13:28 by ebarguil         ###   ########.fr       */
+/*   Created: 2021/06/30 14:09:26 by ebarguil          #+#    #+#             */
+/*   Updated: 2021/06/30 14:23:31 by ebarguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putstr(char *s)
+int	main(int ac, char **av)
 {
-	int	i;
+	int tab[260];
+	int i;
 
 	i = 0;
-	while (s[i])
-		write(1, &s[i++], 1);
-	write(1, "\n", 1);
-}
-
-int		ft_strchr(char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		if (s[i++] == c)
-			return (1);
-	return (0);
-}
-
-int		main(int ac, char **av)
-{
-	char	buf[16384];
-	char	*s[2];
-	int		i[2];
-
-	if (ac != 3)
+	if (ac == 3)
 	{
-		write(1, "\n", 1);
-		return (0);
+//		for (i = 0; i < 260; ++i)
+		while (i < 260)
+			tab[i++] = 0;
+		while(*av[1])
+		{
+			if (!tab[(int)*av[1]])
+			{
+				tab[(int)*av[1]] = 1;
+				write (1, av[1], 1);
+			}
+			++av[1];
+		}
+		while (*av[2])
+		{
+			if (!tab[(int)*av[2]])
+			{
+				tab[(int)*av[2]] = 1;
+				write (1, av[2], 1);
+			}
+			++av[2];
+		}
 	}
-	s[0] = av[1];
-	s[1] = av[2];
-	buf[0] = '\0';
-	i[0] = 0;
-	i[1] = 0;
-	while (s[0] && s[0][i[0]])
-		if (ft_strchr(buf, s[0][i[0]++]) == 0)
-			buf[i[1]++] = s[0][i[0] - 1];
-	i[0] = 0;
-	while (s[1] && s[1][i[0]])
-		if (ft_strchr(buf, s[1][i[0]++]) == 0)
-			buf[i[1]++] = s[1][i[0] - 1];
-	buf[i[1]] = '\0';
-	ft_putstr(buf);
+	write (1, "\n", 1);
 	return (0);
 }

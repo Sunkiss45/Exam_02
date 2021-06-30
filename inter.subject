@@ -23,3 +23,10 @@ rien$
 $>./inter | cat -e
 $
 
+
+
+NOTE PERSONELLE :
+
+Compilation = gcc -Wall -Werror -Wextra -fsanitize=address -g3 inter.c -o inter
+
+Utilisation = ./inter "*s1" "*s2" | cat -e

@@ -36,5 +36,4 @@ NOTE PERSONELLE :
 
 Compilation = gcc -Wall -Werror -Wextra -fsanitize=address -g3 union.c -o union
 
-Utilisation = ./union <"*s1"> <"*s2">
-
+Utilisation = ./union "*s1" "*s2" | cat -e
