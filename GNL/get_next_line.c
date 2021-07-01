@@ -6,16 +6,16 @@
 /*   By: ebarguil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:36:19 by ebarguil          #+#    #+#             */
-/*   Updated: 2021/06/30 15:31:08 by ebarguil         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:14:41 by ebarguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
 int	gnl_rec(char **line, int index, int fd)
 {
 	char	buf;
-	int	x;
+	int		x;
 
 	x = read(fd, &buf, 1);
 	if (x == 1 && buf != '\n')
