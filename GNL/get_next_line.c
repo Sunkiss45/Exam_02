@@ -6,33 +6,33 @@
 /*   By: ebarguil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:36:19 by ebarguil          #+#    #+#             */
-/*   Updated: 2021/07/01 10:14:41 by ebarguil         ###   ########.fr       */
+/*   Updated: 2021/07/05 10:39:20 by ebarguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	gnl_rec(char **line, int index, int fd)
+int	gnl_rec(char **line, int i, int fd)
 {
 	char	buf;
-	int		x;
+	int		r;
 
-	x = read(fd, &buf, 1);
-	if (x == 1 && buf != '\n')
+	r = read(fd, &buf, 1);
+	if (r == 1 && buf != '\n')
 	{
-		x = gnl_rec(line, index + 1, fd);
-		if (x != -1)
-			(*line)[index] = buf;
+		r = gnl_rec(line, i + 1, fd);
+		if (r != -1)
+			(*line)[i] = buf;
 	}
-	else if (x != -1)
+	else if (r != -1)
 	{
-		*line = (char *)malloc(sizeof(char) * (index + 1));
+		*line = (char *)malloc(sizeof(char) * (i + 1));
 		if (*line != NULL)
-			(*line)[index] = '\0';
+			(*line)[i] = '\0';
 		else
-			x = -1;
+			r = -1;
 	}
-	return (x);
+	return (r);
 }
 
 int	get_next_line(char **line)
